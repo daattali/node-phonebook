@@ -1,0 +1,1 @@
+The front end of the app. This react app can be run independently of the backup by using a mock JSON server, run `npm run server` in one process and `npm start` in another.

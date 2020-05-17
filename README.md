@@ -1,1 +1,1 @@
-This app was created using `npm init`. Run using `npm start` or `npm run dev` (dev means that the application will auto restart when any source file changes). The frontend is served entirely from the `build/` folder, which is created using `npm run build` on the phonebook app from Part 2.
+This app was created using `npm init`. `index.js` contains the backend (an in-memory "database"). Run using `npm start` or `npm run dev` (dev means that the application will auto restart when any source file changes). Build and deploy using `npm run deploy:full`.
