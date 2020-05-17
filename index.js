@@ -4,8 +4,18 @@ const cors = require('cors')
 
 const app = express()
 
-app.use(express.json())
-app.use(cors())
+app.use(express.json())  // To have requests parse as JSON
+app.use(cors())  // To get around CORS security issues
+app.use(express.static('build'))  // To server static files from the 'build' directory (contains the frontend)
+app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
+
+morgan.token('body', function (req, res) { 
+  if (req.method === 'POST') {
+    return JSON.stringify(req.body)
+  } else {
+    return ' '
+  }
+})
 
 // const requestLogger = (request, response, next) => {
 //   console.log('---')
@@ -15,17 +25,7 @@ app.use(cors())
 //   console.log('---')
 //   next()
 // }
-
 // app.use(requestLogger)
-
-morgan.token('body', function (req, res) { 
-  if (req.method === 'POST') {
-    return JSON.stringify(req.body)
-  } else {
-    return ' '
-  }
-})
-app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
 let persons = [
   {
