@@ -10,7 +10,7 @@ app.use(express.json())  // To have requests parse as JSON
 app.use(cors())  // To get around CORS security issues
 app.use(morgan(':method :url :status :res[content-length] - :response-time ms :body'))
 
-morgan.token('body', function (req, res) { 
+morgan.token('body', function (req, res) {
   if (req.method === 'POST') {
     return JSON.stringify(req.body)
   } else {
@@ -51,7 +51,7 @@ app.get('/api/persons/:id', (request, response, next) => {
         response.status(404).end()
       }
     })
-    .catch(error => next(error))  
+    .catch(error => next(error))
 })
 
 app.delete('/api/persons/:id', (request, response, next) => {
@@ -103,7 +103,7 @@ const errorHandler = (error, request, response, next) => {
 
   if (error.name === 'CastError') {
     return response.status(400).send({ error: 'malformatted id' })
-  } else if (error.name == 'ValidationError') {
+  } else if (error.name === 'ValidationError') {
     return response.status(400).json({ error: error.message })
   }
 
